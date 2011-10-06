@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{{ STATIC_URL }}smoothness/jquery-ui-1.8.14.custom.css" type="text/css" media="all" /> 
+<script src="{{ STATIC_URL }}js/quickaddress.js" type="text/javascript"></script>
+<script>
+$(function() {
+	setup_qa('#qa','#id_postal_code','#id_street1','#id_street2','{% url koaddress-get %}');
+});
+</script>
+{% endblock %}
+
+{% block content %}
+<form>
+<div class="address">
+	<h3>Address</h3>
+	<div class="address_cont">
+	    <ul>
+		    <li><label for="id_postal_code">Postcode</label><input id="id_postal_code" type="text" name="postcode" value=""><li>
+		    <li><label for="id_street1">Address 1</label><input id="id_street1" type="text" name="address_1" value=""><li>
+		    <li><label for="id_street2">Address 2</label><input id="id_street2" type="text" name="address_2" value=""><li>
+	    </ul>
+	</div>
+	<div class="quickaddress">
+		<span class="pointer"></span>
+		<label class="qalabel" for="qa">Quick Address</label>
+		<input class="qa" id="qa" type="text" name="qa" value="">
+		<span class="help">Type part of your address to quickly find the full address.</span>
+	</div>
+</div>
+</form>
+{% endblock %}
